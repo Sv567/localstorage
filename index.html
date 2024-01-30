@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Save Textarea</title>
+</head>
+
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
+    body{
+        width: 100%;
+        height: 100%;
+    }
+
+    h1 {
+        display: flex;
+        justify-content: center;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        padding: 2rem;
+    }
+
+    #myTextarea {
+        display: flex;
+        justify-content: center;
+        padding: 0.5rem;
+        font-size: 15px;
+    }
+
+    .container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<body>
+
+    <div class="container">
+        <h1>Auto Save Textarea</h1>
+        <textarea id="myTextarea" rows="15" cols="60"></textarea>
+    </div>
+
+    <script>
+        // Get the textarea element
+        let textarea = document.getElementById('myTextarea');
+
+        // Check if there's a saved value in local storage
+        let savedValue = localStorage.getItem('autosave_textarea');
+        // console.log(savedValue);
+
+        // Set the textarea value to the saved value, if any
+        if (savedValue) {
+            textarea.value = savedValue;
+        }
+
+        // Add an event listener to the textarea for input changes
+        textarea.addEventListener('input', function () {
+            // Save the current value to local storage
+            localStorage.setItem('autosave_textarea', textarea.value);
+        });
+    </script>
+
+</body>
+
+</html>
